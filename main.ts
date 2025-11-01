@@ -1,4 +1,4 @@
-//% color=#0066ff icon="\uf076" block="Waveshare Hall"
+% color=#0066ff icon="\uf076" block="Waveshare Hall"
 namespace waveshareHall {
 
     let hallPin: AnalogPin = AnalogPin.P1
@@ -8,7 +8,7 @@ namespace waveshareHall {
     /**
      * Set analog pin for the Hall sensor
      */
-    //% block="set Hall sensor pin %pin"
+    % block="set Hall sensor pin %pin"
     export function setAnalogPin(pin: AnalogPin): void {
         hallPin = pin
     }
@@ -16,8 +16,8 @@ namespace waveshareHall {
     /**
      * Set magnetic detection threshold (0-1)
      */
-    //% block="set Hall sensitivity %value"
-    //% value.min=0 value.max=1 value.defl=0.12
+    % block="set Hall sensitivity %value"
+    % value.min=0 value.max=1 value.defl=0.12
     export function setThreshold(value: number) {
         threshold = value
     }
@@ -25,7 +25,7 @@ namespace waveshareHall {
     /**
      * Read magnetic field strength (-1 to +1)
      */
-    //% block="Hall field strength"
+    % block="Hall field strength"
     export function readField(): number {
         const raw = pins.analogReadPin(hallPin)
         return (raw - 512) / 512
@@ -34,7 +34,7 @@ namespace waveshareHall {
     /**
      * True if magnet detected
      */
-    //% block="magnet present?"
+    % block="magnet present?"
     export function magnetPresent(): boolean {
         return Math.abs(readField()) > threshold
     }
@@ -42,7 +42,7 @@ namespace waveshareHall {
     /**
      * Event: when magnet is detected
      */
-    //% block="on magnet detected"
+    % block="on magnet detected"
     export function onMagnetDetected(handler: () => void) {
         control.inBackground(function () {
             while (true) {
@@ -58,7 +58,7 @@ namespace waveshareHall {
     /**
      * Event: when magnet is removed
      */
-    //% block="on magnet removed"
+    % block="on magnet removed"
     export function onMagnetRemoved(handler: () => void) {
         control.inBackground(function () {
             while (true) {
